@@ -1,3 +1,5 @@
+#202102614 GBT학과 이유진
+
 # Node 클래스 정의
 class Node:
 	def __init__(self, data):
@@ -103,19 +105,24 @@ class LinkedList:
 		self.num_of_data+=1
     
     
-	def remove(self,key):	
+	def remove(self,key):
 		self.current=self.head.next
-		self.before=self.head #이거 추가함
+		self.before=self.head 
 		idx=1
 		state=False
 		while self.current!=None:
 			if self.current.data==key:
 				state=True
 				print("%d번째 원소(%d) 삭제"%(idx,key)) 
-				self.num_of_data-=1
-				self.delete()
-                 #여기 이상함..#2배로 -됨..왜지...
-            
+				#current 지우는 과정
+				if self.current is self.tail:
+					self.tail = self.before
+			
+				self.before.next = self.current.next
+				self.current = self.before 
+
+				self.num_of_data -= 1
+				
 			self.before=self.current
 			self.current=self.current.next
 			idx+=1
