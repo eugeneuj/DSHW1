@@ -104,7 +104,7 @@ class LinkedList:
         
 		self.num_of_data+=1
     
-    
+
 	def remove(self,key):
 		self.current=self.head.next
 		self.before=self.head 
@@ -114,18 +114,20 @@ class LinkedList:
 			if self.current.data==key:
 				state=True
 				print("%d번째 원소(%d) 삭제"%(idx,key)) 
+
 				#current 지우는 과정
 				if self.current is self.tail:
 					self.tail = self.before
-			
+
+			# 중요 : current가 next가 아닌 before로 변경된다.
 				self.before.next = self.current.next
 				self.current = self.before 
 
 				self.num_of_data -= 1
-				
+
 			self.before=self.current
 			self.current=self.current.next
 			idx+=1
-            
+             
 		if not state:
 			print('해당하는 원소가 없습니다.')
